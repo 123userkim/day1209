@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5ce43d6c6e81f2fef309da06d4726f64"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var mapContainer = document.getElementById("map");
+	mapOption = {
+		center : new kakao.maps.LatLng(37.55674670691636, 126.91952713889548),
+		level:3
+	};
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+	
+	var btnShow = document.getElementById("btnShow");
+	btnShow.onclick = function(){
+		var arr = [
+			{title:"최우영식당",latlag:new kakao.maps.LatLng(37.557325800088236, 126.92077349471657)},
+			{title:"마레스타",latlag:new kakao.maps.LatLng(37.5573561947714, 126.92064991005972)},
+			{title:"안동한우마을",latlag:new kakao.maps.LatLng(37.55581551884045, 126.91989454232845)},
+			{title:"고쿠텐",latlag:new kakao.maps.LatLng(37.562683862110035, 126.91969797030511)}
+		];
+		
+		var imageSrc = "images/marker.png";
+		for(var i=0; i<arr.length; i++){
+			var imageSize = new kakao.maps.Size(20,20);
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+			var marker = new kakao.maps.Marker({
+				map:map,
+				position:arr[i].latlag, 
+				title:arr[i].title,
+				image:markerImage
+			});
+		}
+		
+	};//end btnShow.onclick
+	
+	
+}//end window.onload
+</script>
+</head>
+<body>
+	<div id="map" style="width: 100%;height: 500px;"></div>
+	<button id="btnShow">학원근처 추천맛집</button>
+	
+</body>
+</html>
